@@ -1,7 +1,7 @@
 /// <reference = cypress>
 
 describe("Testes da criacao, registro e login",()=>{
-  it.skip("Teste de criacao de usuario com sucesso",()=>{
+  it("Teste de criacao de usuario com sucesso",()=>{
     cy.visit('https://globalsqa.com/angularJs-protractor/registration-login-example/#/login')
     cy.get('.btn-link').click()
     cy.get('#firstName').type("Diego")
@@ -16,7 +16,7 @@ describe("Testes da criacao, registro e login",()=>{
 
 
 
-  it.skip("Teste de criacao de usuario com falha",()=>{
+  it("Teste de criacao de usuario com falha",()=>{
     cy.visit('https://globalsqa.com/angularJs-protractor/registration-login-example/#/login')
     cy.get('.btn-link').click()
     cy.get('#firstName').type("Diego")
@@ -56,6 +56,19 @@ describe("Testes da criacao, registro e login",()=>{
 
     cy.get('.ng-binding').should("contain.text","Username or password is incorrect")
   })
+})
+
+it ("Delete do user com sucesso",()=>{
+  let infos = criarUser()
+  cy.login(infos[0],infos[1])
+
+  cy.get('.ng-binding > a').click()
+  cy.get('.btn').click()
+
+  cy.login(infos[0],infos[1])
+
+  cy.get('.ng-binding').should("contain.text","Username or password is incorrect")
+
 })
 
 
